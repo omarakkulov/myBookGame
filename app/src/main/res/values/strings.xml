@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">myBookGame</string>
+    <string name="startTheGame">Начать игру</string>
+    <string name="end">Выйти</string>
+    <string name="settings">Настройки</string>
+    <string name="font_size">Размер шрифта в игре</string>
+    <string name="volume_on_off">Включить/Выключить звук</string>
+    <string name="back">Назад</string>
+    <string name="game_brightness">Яркость игры</string>
+    <string name="aboutUs">Про нас</string>
+    <string name="vk">VK</string>
+    <string name="instagram">Instagram</string>
+    <string name="small_font">Мелкий</string>
+    <string name="medium_font">Средний</string>
+    <string name="large_font">Большой</string>
+    <string name="soundPlay">Play</string>
+    <string name="square">Квадрат</string>
+    <string name="circle">Круг</string>
+    <string name="triangle">Треугольник</string>
+    <string name="letsGo">Поехали!</string>
+
+    <string-array name="mainLevels">
+        <item>Уровень 1</item>
+        <item>Уровень 2</item>
+        <item>Уровень 3</item>
+    </string-array>
+</resources>

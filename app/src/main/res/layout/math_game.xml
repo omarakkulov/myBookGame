@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFC107"
+    tools:context=".MathGame">
+
+    <Button
+        android:id="@+id/startMathGame"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="#303952"
+        android:text="@string/letsGo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pb_timer"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#E91E63"
+        android:max="15"
+        android:progress="45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pb_timer" />
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pb_timer" />
+
+    <TextView
+        android:id="@+id/tv_questions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_score"
+        app:layout_constraintStart_toEndOf="@+id/tv_timer"
+        app:layout_constraintTop_toBottomOf="@+id/pb_timer" />
+
+    <TableLayout
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="55dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_questions">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_answer1"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:background="#e15f41"
+                android:text="Button"
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn_answer2"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:background="#786fa6"
+                android:text="Button"
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_answer3"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:background="#c44569"
+                android:text="Button"
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn_answer4"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:background="#63cdda"
+                android:text="Button"
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp" />
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/tv_bottomScoreRezult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
