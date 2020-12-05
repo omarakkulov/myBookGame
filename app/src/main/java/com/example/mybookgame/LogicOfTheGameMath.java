@@ -1,8 +1,5 @@
 package com.example.mybookgame;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LogicOfTheGameMath {
 
 //    private List<Question_MG> questions;
