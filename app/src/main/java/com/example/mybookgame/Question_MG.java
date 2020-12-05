@@ -46,8 +46,7 @@ public class Question_MG {
         Collections.shuffle(answerList);
 
         // теперь добавим в позицию answerPos число answer, то есть правильный ответ
-        // понимаю, можно было бы лучше воспользоваться обычным массивом, но я захотел получше повторить списки и решил
-        // воспользоваться ими
+        // понимаю, можно было бы воспользоваться обычным массивом, но я решил сделать через ArrayList
         answerList.add(answerPos, answer);
         answerList.remove(answerPos + 1);
 

@@ -2,9 +2,7 @@ package com.example.mybookgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -16,8 +14,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MathGame extends AppCompatActivity implements View.OnClickListener{
-
+public class MathGame extends AppCompatActivity implements View.OnClickListener {
+    // все кнопки, textView и ползунок на экране
     Button startMathGame, btn_answer1, btn_answer2, btn_answer3, btn_answer4;
     TextView tv_timer, tv_score, tv_questions, tv_bottomScoreResult;
     ProgressBar pb_timer;
@@ -31,6 +29,7 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.math_game);
 
+        // найдем наши элементы по id
         startMathGame = findViewById(R.id.startMathGame);
         btn_answer1 = findViewById(R.id.btn_answer1);
         btn_answer2 = findViewById(R.id.btn_answer2);
@@ -47,19 +46,22 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener{
         tv_timer.setText("Время");
         tv_questions.setText("");
         tv_bottomScoreResult.setText("Начинай уже!");
-        tv_score.setText("Результат");
+        tv_score.setText("Баллы");
 
+        //присвоим обработчики каждой кнопке
         startMathGame.setOnClickListener(clickStartGameButton);
         btn_answer1.setOnClickListener(this);
         btn_answer2.setOnClickListener(this);
         btn_answer3.setOnClickListener(this);
         btn_answer4.setOnClickListener(this);
 
+        //здесь я чуть позже изменю кое что, пока не работает
 //        btn_answer1.setOnTouchListener(this);
 //        btn_answer2.setOnTouchListener(this);
 //        btn_answer3.setOnTouchListener(this);
 //        btn_answer4.setOnTouchListener(this);
 
+        // в начале игры обозначим 4 кнопки как неработающие, иначе вылетает ошибка если кликаем
         btn_answer1.setEnabled(false);
         btn_answer2.setEnabled(false);
         btn_answer3.setEnabled(false);
@@ -71,6 +73,8 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener{
         btn_answer4.setText("");
     }
 
+    //так как мы реализуем интерфейс OnclickListener в нашем классе MathGame,
+    // то сразу без создания лишних классов я реализовал в нем метод onClick для 4 кнопок с выбором ответа
     @Override
     public void onClick(View v) {
         Button buttonCLicked = (Button) v;
@@ -80,23 +84,26 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener{
         startGame();
     }
 
+    // создаем обработчик для нажатия кнопки startGameButton для начала игры
     View.OnClickListener clickStartGameButton = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Button startButton = (Button) v;
             startButton.setVisibility(View.INVISIBLE);
             seconds = 15;
+            tv_score.setText("0");
             game = new LogicOfTheGameMath();
             startGame();
-
 
             //запустим обратный отчет для ползунка
             countDownTimer.start();
         }
     };
 
+    // это практически главный метод нашей игры, создаем новый вопрос
     private void startGame() {
         game.makeNewQuestion();
+        // массив с ответами на вычисления
         ArrayList<Integer> answers = game.getCurrentQuestion().getAnswerList();
 
         btn_answer1.setText(Integer.toString(answers.get(0)));
@@ -109,11 +116,11 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener{
         btn_answer3.setEnabled(true);
         btn_answer4.setEnabled(true);
 
-        tv_score.setText("0");
         tv_questions.setText(game.getCurrentQuestion().getQuestionPhrase());
         tv_bottomScoreResult.setText(game.getNumberCorrect() + "/" + (game.getTotalQuestions() - 1));
     }
 
+    // создадим анонимный класс из абстрактного CountDown, в котором реализуем 2 метода
     CountDownTimer countDownTimer = new CountDownTimer(16000, 1000) {
         // 15000 - общее количетсов миллисекунд для ползунка,
         // 1000 - миллисекунд для одного скачка ползунка вперед
@@ -122,8 +129,10 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener{
             seconds--;
             tv_timer.setText(Integer.toString(seconds + 1) + " сек");
             pb_timer.setProgress(15 - seconds);
+
         }
 
+        // этот метод будет выполняться после истечения времени игры
         @Override
         public void onFinish() {
             btn_answer1.setEnabled(false);
@@ -136,6 +145,7 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener{
                     game.getNumberCorrect() + "/" + (game.getTotalQuestions() - 1));
 
             tv_timer.setText(Integer.toString(0) + " сек");
+            pb_timer.setProgress(15);
             //как я понял, Handler это класс обработчик, который может совершить какое-то действие один раз после указанной задержки
             //задержкой тут является число 2000 в методе postDelayed()
             // то есть после того, как игра заканчивается, то через 2 секунды наша главная кнопка снова появится и мы можем начать играть заново
