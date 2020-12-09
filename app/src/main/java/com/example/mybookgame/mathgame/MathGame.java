@@ -128,7 +128,6 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
             seconds--;
             tv_timer.setText(Integer.toString(seconds + 1) + " сек");
             pb_timer.setProgress(15 - seconds);
-
         }
 
         // этот метод будет выполняться после истечения времени игры
