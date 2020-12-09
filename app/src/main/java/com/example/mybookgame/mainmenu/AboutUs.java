@@ -1,4 +1,4 @@
-package com.example.mybookgame;
+package com.example.mybookgame.mainmenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.mybookgame.R;
 
 public class AboutUs extends AppCompatActivity implements View.OnClickListener {
     //кнопки на экране

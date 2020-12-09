@@ -9,6 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.mybookgame.mainmenu.AboutUs;
+import com.example.mybookgame.mainmenu.Levels;
+import com.example.mybookgame.mainmenu.SettingsMenu;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     // кнопки на главном экране

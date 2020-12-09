@@ -1,4 +1,4 @@
-package com.example.mybookgame;
+package com.example.mybookgame.mathgame;
 
 public class LogicOfTheGameMath {
 

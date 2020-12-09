@@ -1,4 +1,4 @@
-package com.example.mybookgame;
+package com.example.mybookgame.mainmenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.mybookgame.R;
 import com.example.mybookgame.mathgame.MathGame;
 
 import java.util.Objects;

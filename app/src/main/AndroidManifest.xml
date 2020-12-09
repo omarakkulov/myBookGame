@@ -15,17 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MathGame"
-            android:parentActivityName=".Levels" />
+            android:name=".mathgame.MathGame"
+            android:parentActivityName=".mainmenu.Levels" />
         <!--        <activity android:name=".Painting_lvl_1" />-->
         <activity
-            android:name=".Levels"
+            android:name=".mainmenu.Levels"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".AboutUs"
+            android:name=".mainmenu.AboutUs"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".SettingsMenu"
+            android:name=".mainmenu.SettingsMenu"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

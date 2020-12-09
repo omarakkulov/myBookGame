@@ -1,6 +1,5 @@
-package com.example.mybookgame;
+package com.example.mybookgame.mainmenu;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -13,6 +12,8 @@ import android.widget.PopupMenu;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mybookgame.R;
 
 // реализуем интерфейсы для обработки нажатия клавиш в окне настроек, интерфейс для обработки нажатий на ползунок, интерфейс для popupMenu
 public class SettingsMenu extends AppCompatActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, PopupMenu.OnMenuItemClickListener {

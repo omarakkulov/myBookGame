@@ -1,4 +1,4 @@
-package com.example.mybookgame;
+package com.example.mybookgame.mathgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.mybookgame.R;
 
 import java.util.ArrayList;
 
