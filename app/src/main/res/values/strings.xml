@@ -18,6 +18,9 @@
     <string name="circle">Круг</string>
     <string name="triangle">Треугольник</string>
     <string name="letsGo">Поехали!</string>
+    <string name="result_table">Таблица результатов</string>
+    <string name="edit_name">Введите имя для сохранения результатов:</string>
+    <string name="ok">ok</string>
 
     <string-array name="mainLevels">
         <item>Уровень 1</item>

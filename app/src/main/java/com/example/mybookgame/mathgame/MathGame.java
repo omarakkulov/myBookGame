@@ -3,11 +3,13 @@ package com.example.mybookgame.mathgame;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -16,11 +18,23 @@ import com.example.mybookgame.R;
 import java.util.ArrayList;
 
 public class MathGame extends AppCompatActivity implements View.OnClickListener {
-    // все кнопки, textView и ползунок на экране
+    // 4 кнопки игры и кнопка начала игры
     Button startMathGame, btn_answer1, btn_answer2, btn_answer3, btn_answer4;
+
+    // таблица результатов, кнопка ОК чтобы ввести имя в бд, само имя
+    Button btn_results, btn_OK;
+    // textView для пояснения введения имени в editText
+    TextView tv_textPersonName;
+    EditText editTextTextPersonName;// введите имя
+
+
+    // textViews таймер, результаты выбора справа сверху, textView самих вопросов, textView результатов после игры
     TextView tv_timer, tv_score, tv_questions, tv_bottomScoreResult;
+
+    //ползунок для времени
     ProgressBar pb_timer;
 
+    // вложенный класс для логики самой игры
     LogicOfTheGameMath game = new LogicOfTheGameMath();
 
     int seconds = 15; // переменная для удобного отображения времени на tv_timer
@@ -39,10 +53,20 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
 
         pb_timer = findViewById(R.id.pb_timer);
 
+        btn_OK = findViewById(R.id.btn_OK);
+        btn_OK.setVisibility(View.INVISIBLE);
+        btn_OK.setEnabled(false);
+        tv_textPersonName = findViewById(R.id.tv_textPersonName);
+        tv_textPersonName.setVisibility(View.INVISIBLE);
+        editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
+        editTextTextPersonName.setEnabled(false);
+        editTextTextPersonName.setVisibility(View.INVISIBLE);
+
         tv_timer = findViewById(R.id.tv_timer);
         tv_score = findViewById(R.id.tv_score);
         tv_questions = findViewById(R.id.tv_questions);
-        tv_bottomScoreResult = findViewById(R.id.tv_bottomScoreRezult);
+        tv_bottomScoreResult = findViewById(R.id.tv_bottomScoreResult);
+        btn_results = findViewById(R.id.btn_results);
 
         tv_timer.setText("Время");
         tv_questions.setText("");
@@ -55,6 +79,8 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
         btn_answer2.setOnClickListener(this);
         btn_answer3.setOnClickListener(this);
         btn_answer4.setOnClickListener(this);
+
+        btn_results.setOnClickListener(clickResults);
 
         //здесь я чуть позже изменю кое что, пока не работает
 //        btn_answer1.setOnTouchListener(this);
@@ -90,7 +116,14 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
         @Override
         public void onClick(View v) {
             Button startButton = (Button) v;
+
             startButton.setVisibility(View.INVISIBLE);
+            btn_results.setVisibility(View.INVISIBLE);
+            btn_results.setEnabled(false);
+
+            btn_OK.setVisibility(View.INVISIBLE);
+            btn_OK.setEnabled(false);
+
             seconds = 15;
             tv_score.setText("0");
             game = new LogicOfTheGameMath();
@@ -98,6 +131,27 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
 
             //запустим обратный отчет для ползунка
             countDownTimer.start();
+
+            editTextTextPersonName.setEnabled(false);
+            editTextTextPersonName.setVisibility(View.INVISIBLE);
+            tv_textPersonName.setVisibility(View.INVISIBLE);
+        }
+    };
+
+    View.OnClickListener clickOKBtn = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
+
+    // обработчки для результатов
+    View.OnClickListener clickResults = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Button results = (Button) v;
+            Intent intent = new Intent(MathGame.this, Results_activity.class);
+            startActivity(intent);
         }
     };
 
@@ -128,7 +182,7 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
         @Override
         public void onTick(long millisUntilFinished) {
             seconds--;
-            tv_timer.setText(Integer.toString(seconds + 1) + " сек");
+            tv_timer.setText((seconds + 1) + " сек");
             pb_timer.setProgress(15 - seconds);
         }
 
@@ -141,10 +195,9 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
             btn_answer4.setEnabled(false);
             tv_bottomScoreResult.setWidth(1080);
             tv_bottomScoreResult.setBackgroundResource(R.color.myGreen);
-            tv_bottomScoreResult.setText("\t\t\t\t\t\t\t\tВремя вышло! Результат: \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                    game.getNumberCorrect() + "/" + (game.getTotalQuestions() - 1));
+            tv_bottomScoreResult.setText("Время вышло! Результат: " + game.getNumberCorrect() + "/" + (game.getTotalQuestions() - 1));
 
-            tv_timer.setText(Integer.toString(0) + " сек");
+            tv_timer.setText((0) + " сек");
             pb_timer.setProgress(15);
             //как я понял, Handler это класс обработчик, который может совершить какое-то действие один раз после указанной задержки
             //задержкой тут является число 2000 в методе postDelayed()
@@ -157,6 +210,14 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
                     startMathGame.setVisibility(View.VISIBLE);
                 }
             }, 2000);
+
+            editTextTextPersonName.setEnabled(true);
+            editTextTextPersonName.setVisibility(View.VISIBLE);
+            tv_textPersonName.setVisibility(View.VISIBLE);
+            btn_OK.setVisibility(View.VISIBLE);
+            btn_OK.setEnabled(true);
+            btn_results.setVisibility(View.VISIBLE);
+            btn_results.setEnabled(true);
         }
     };
 

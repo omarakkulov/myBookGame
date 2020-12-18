@@ -14,10 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".mathgame.Results_activity"></activity>
         <activity
             android:name=".mathgame.MathGame"
-            android:parentActivityName=".mainmenu.Levels" />
-        <!--        <activity android:name=".Painting_lvl_1" />-->
+            android:parentActivityName=".mainmenu.Levels" /> <!-- <activity android:name=".Painting_lvl_1" /> -->
         <activity
             android:name=".mainmenu.Levels"
             android:parentActivityName=".MainActivity" />
@@ -30,6 +30,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
