@@ -165,7 +165,7 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
     }
 
     // создадим анонимный класс из абстрактного CountDown, в котором реализуем 2 метода
-    CountDownTimer countDownTimer = new CountDownTimer(1000, 1000) {
+    CountDownTimer countDownTimer = new CountDownTimer(15000, 1000) {
         // 15000 - общее количетсов миллисекунд для ползунка,
         // 1000 - миллисекунд для одного скачка ползунка вперед
         @Override
