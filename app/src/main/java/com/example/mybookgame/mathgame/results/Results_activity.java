@@ -16,7 +16,9 @@ import com.example.mybookgame.mathgame.database_settings.DB_Template;
 import java.util.List;
 
 public class Results_activity extends AppCompatActivity {
+    // listview, дб, лист и адаптер для удобства
     ListView lv_results;
+
     DBHelper dbHelper;
     List<DB_Template> viewAll;
     ArrayAdapter<DB_Template> adapter;
@@ -32,10 +34,12 @@ public class Results_activity extends AppCompatActivity {
         viewAll = dbHelper.getResult();
         showResults();
 
+        // при нажатии на пункт listview под определенным id, то будет удаляться этот пункт с результатом
         lv_results.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DB_Template template = (DB_Template) parent.getItemAtPosition(position);
+
                 dbHelper.delete(template);
                 viewAll = dbHelper.getResult();
                 showResults();
@@ -43,6 +47,7 @@ public class Results_activity extends AppCompatActivity {
         });
     }
 
+    //обновляем адаптер
     private void showResults() {
         adapter = new ArrayAdapter<DB_Template>(this, android.R.layout.simple_list_item_1, viewAll);
         lv_results.setAdapter(adapter);

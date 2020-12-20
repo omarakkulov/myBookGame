@@ -31,11 +31,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 COLUMN_RESULT + " INTEGER)");
     }
 
+    //пока не трогаем
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
 
+    //доавляем пункт
     public boolean add(DB_Template template) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -51,6 +53,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    //результат будем вставлять в лист и отобразим все это в listview с помощью адаптера
     public List<DB_Template> getResult() {
         List<DB_Template> returnList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -63,6 +66,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String column_name = cursor.getString(1);
                 int column_result = cursor.getInt(2);
 
+                //это пойдет в лист
                 DB_Template template = new DB_Template(column_id, column_name, column_result);
                 returnList.add(template);
             } while (cursor.moveToNext());
@@ -73,6 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
+    //удаление пункта по id
     public boolean delete(DB_Template template) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sqlExpression = "DELETE FROM " + TABLE_RESULT + " WHERE " + COLUMN_ID + " = " + template.getId();

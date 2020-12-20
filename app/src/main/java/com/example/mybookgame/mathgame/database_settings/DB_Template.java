@@ -1,5 +1,5 @@
 package com.example.mybookgame.mathgame.database_settings;
-
+//это шаблон для добавления пункта, просто айди, имя и результат и геттеры с сеттерами
 public class DB_Template {
     private int id;
     private String name;

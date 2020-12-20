@@ -22,7 +22,7 @@ public class SaveResults extends AppCompatActivity {
 
         pickViews();
 
-        btn_save_ur_results.setOnClickListener(btn_save_ur_results_clicked);
+        btn_save_ur_results.setOnClickListener(btn_save_ur_results_clicked); //обработчик
     }
 
     View.OnClickListener btn_save_ur_results_clicked = new View.OnClickListener() {
@@ -33,12 +33,12 @@ public class SaveResults extends AppCompatActivity {
         public void onClick(View v) {
             dbHelper = new DBHelper(SaveResults.this);
 
-            int result = MathGame.result;
+            int result = MathGame.result;//значение очков из игры сделали статической переменной и обращаемся к ней в MathGame
             String name = et_PersonName.getText().toString();
 
             if (!name.isEmpty()) {
                 template = new DB_Template(-1, et_PersonName.getText().toString(), result);
-                boolean add = dbHelper.add(template);
+                boolean add = dbHelper.add(template);// добавляем результат
                 Toast.makeText(SaveResults.this, "Результаты сохранены : \n" + template.toString() + "\nИзменения занесены в таблицу результатов", Toast.LENGTH_LONG).show();
                 btn_save_ur_results.setEnabled(false);
                 btn_save_ur_results.setVisibility(View.INVISIBLE);
