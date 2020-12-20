@@ -8,6 +8,7 @@
 ![Главное меню](https://sun9-33.userapi.com/impg/aDyBEYqpXKAI1BRlQOJlnyXa2flcDMiqiEkaOw/Ta_xOCZFVsQ.jpg?size=377x622&quality=96&proxy=1&sign=d817349bf2d5c80148de7811674e3f51&type=album)
 ![Начать игру](https://sun9-37.userapi.com/impg/cqFZODkPFOHMD-U9uQFXlh-joLLhgPMDW6tUlw/hlNo5BjaZ8k.jpg?size=373x616&quality=96&proxy=1&sign=41faf5e68c9d1f06446dc58fcc7883d4&type=album)
 ![](https://sun9-64.userapi.com/impg/YwQlbm5TxuR5WSfBp4aTBjLYry1eoSWNZropTw/FK-r3H2RPMY.jpg?size=365x618&quality=96&proxy=1&sign=22fdb0ce75b5a2fca0d2feec5f57d597&type=album)
-![](https://sun9-12.userapi.com/impg/-cuTEBInc5IpyEM8o8I4lcYzmHH6WW5PK9Lycg/CtAcdEDniEY.jpg?size=374x556&quality=96&proxy=1&sign=dc79f1329f49e884a145ab60af8406bd&type=album)
+![](https://sun9-48.userapi.com/impg/krHkQ32bR46Zum_meyT55yBq4IX1oXPc6nQwew/oqmFvWRbsn8.jpg?size=375x541&quality=96&proxy=1&sign=53a08b0ca295e0f2855fdaa2879f00d9&type=album)
 ![](https://sun9-21.userapi.com/impg/WtnvMWN60BXCi5D8BeTIe-_iszuaOK1fttOPJQ/HkO0kp7wK8Q.jpg?size=374x598&quality=96&proxy=1&sign=b06487ea5003261d7591a46fc02b65a1&type=album)
 ![](https://sun9-74.userapi.com/impg/ro7RUaVF6K4TG3m9569xtJRR5ednyEnyQ-n7KA/8jPoPHUKmMM.jpg?size=369x599&quality=96&proxy=1&sign=74ba4103e536b01f70d07a84c6626a38&type=album)
+![](https://sun9-3.userapi.com/impg/P0g7vus_q_2qhoIRP4twucoV_Agp2urIiGPkSQ/rjs3-zyD4kM.jpg?size=373x599&quality=96&proxy=1&sign=ad8ec93220d847dac52dfdd6964327fb&type=album)
