@@ -30,12 +30,14 @@ public class Results_activity extends AppCompatActivity {
 
         dbHelper = new DBHelper(this);
         viewAll = dbHelper.getResult();
+        showResults();
 
         lv_results.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DB_Template template = (DB_Template) parent.getItemAtPosition(position);
                 dbHelper.delete(template);
+                viewAll = dbHelper.getResult();
                 showResults();
             }
         });
