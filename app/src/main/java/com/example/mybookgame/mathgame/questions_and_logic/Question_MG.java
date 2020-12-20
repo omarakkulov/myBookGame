@@ -1,4 +1,4 @@
-package com.example.mybookgame.mathgame;
+package com.example.mybookgame.mathgame.questions_and_logic;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -14,9 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mathgame.Results_activity"></activity>
         <activity
-            android:name=".mathgame.MathGame"
+            android:name=".mathgame.database_settings.SaveResults"
+            android:parentActivityName=".mathgame.questions_and_logic.MathGame" />
+        <activity
+            android:name=".mathgame.results.Results_activity"
+            android:parentActivityName=".mathgame.questions_and_logic.MathGame" />
+        <activity
+            android:name=".mathgame.questions_and_logic.MathGame"
             android:parentActivityName=".mainmenu.Levels" /> <!-- <activity android:name=".Painting_lvl_1" /> -->
         <activity
             android:name=".mainmenu.Levels"

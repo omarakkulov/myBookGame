@@ -1,4 +1,4 @@
-package com.example.mybookgame.mathgame;
+package com.example.mybookgame.mathgame.questions_and_logic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,11 +9,12 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.mybookgame.R;
+import com.example.mybookgame.mathgame.database_settings.SaveResults;
+import com.example.mybookgame.mathgame.results.Results_activity;
 
 import java.util.ArrayList;
 
@@ -22,20 +23,22 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
     Button startMathGame, btn_answer1, btn_answer2, btn_answer3, btn_answer4;
 
     // таблица результатов, кнопка ОК чтобы ввести имя в бд, само имя
-    Button btn_results, btn_OK;
+    Button btn_results, btn_save_results;
     // textView для пояснения введения имени в editText
     TextView tv_textPersonName;
-    EditText editTextTextPersonName;// введите имя
 
 
     // textViews таймер, результаты выбора справа сверху, textView самих вопросов, textView результатов после игры
     TextView tv_timer, tv_score, tv_questions, tv_bottomScoreResult;
+
 
     //ползунок для времени
     ProgressBar pb_timer;
 
     // вложенный класс для логики самой игры
     LogicOfTheGameMath game = new LogicOfTheGameMath();
+
+    public static int result;
 
     int seconds = 15; // переменная для удобного отображения времени на tv_timer
 
@@ -53,14 +56,13 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
 
         pb_timer = findViewById(R.id.pb_timer);
 
-        btn_OK = findViewById(R.id.btn_OK);
-        btn_OK.setVisibility(View.INVISIBLE);
-        btn_OK.setEnabled(false);
+        btn_save_results = findViewById(R.id.btn_save_results);
+        btn_save_results.setVisibility(View.INVISIBLE);
+        btn_save_results.setEnabled(false);
+        btn_save_results.setOnClickListener(click_btn_results);
+
         tv_textPersonName = findViewById(R.id.tv_textPersonName);
         tv_textPersonName.setVisibility(View.INVISIBLE);
-        editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
-        editTextTextPersonName.setEnabled(false);
-        editTextTextPersonName.setVisibility(View.INVISIBLE);
 
         tv_timer = findViewById(R.id.tv_timer);
         tv_score = findViewById(R.id.tv_score);
@@ -81,23 +83,6 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
         btn_answer4.setOnClickListener(this);
 
         btn_results.setOnClickListener(clickResults);
-
-        //здесь я чуть позже изменю кое что, пока не работает
-//        btn_answer1.setOnTouchListener(this);
-//        btn_answer2.setOnTouchListener(this);
-//        btn_answer3.setOnTouchListener(this);
-//        btn_answer4.setOnTouchListener(this);
-
-        // в начале игры обозначим 4 кнопки как неработающие, иначе вылетает ошибка если кликаем
-        btn_answer1.setEnabled(false);
-        btn_answer2.setEnabled(false);
-        btn_answer3.setEnabled(false);
-        btn_answer4.setEnabled(false);
-
-        btn_answer1.setText("");
-        btn_answer2.setText("");
-        btn_answer3.setText("");
-        btn_answer4.setText("");
     }
 
     //так как мы реализуем интерфейс OnclickListener в нашем классе MathGame,
@@ -111,6 +96,18 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
         startGame();
     }
 
+    //обработчик сохранения результатов
+    View.OnClickListener click_btn_results = new View.OnClickListener() {
+        Intent intent;
+
+        @Override
+        public void onClick(View v) {
+            intent = new Intent(MathGame.this, SaveResults.class);
+            startActivity(intent);
+        }
+    };
+
+
     // создаем обработчик для нажатия кнопки startGameButton для начала игры
     View.OnClickListener clickStartGameButton = new View.OnClickListener() {
         @Override
@@ -121,8 +118,8 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
             btn_results.setVisibility(View.INVISIBLE);
             btn_results.setEnabled(false);
 
-            btn_OK.setVisibility(View.INVISIBLE);
-            btn_OK.setEnabled(false);
+            btn_save_results.setVisibility(View.INVISIBLE);
+            btn_save_results.setEnabled(false);
 
             seconds = 15;
             tv_score.setText("0");
@@ -132,20 +129,12 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
             //запустим обратный отчет для ползунка
             countDownTimer.start();
 
-            editTextTextPersonName.setEnabled(false);
-            editTextTextPersonName.setVisibility(View.INVISIBLE);
             tv_textPersonName.setVisibility(View.INVISIBLE);
         }
     };
 
-    View.OnClickListener clickOKBtn = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
 
-        }
-    };
-
-    // обработчки для результатов
+    // обработчик для результатов
     View.OnClickListener clickResults = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -176,14 +165,14 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
     }
 
     // создадим анонимный класс из абстрактного CountDown, в котором реализуем 2 метода
-    CountDownTimer countDownTimer = new CountDownTimer(16000, 1000) {
+    CountDownTimer countDownTimer = new CountDownTimer(1000, 1000) {
         // 15000 - общее количетсов миллисекунд для ползунка,
         // 1000 - миллисекунд для одного скачка ползунка вперед
         @Override
         public void onTick(long millisUntilFinished) {
             seconds--;
-            tv_timer.setText((seconds + 1) + " сек");
             pb_timer.setProgress(15 - seconds);
+            tv_timer.setText((seconds) + " сек");
         }
 
         // этот метод будет выполняться после истечения времени игры
@@ -199,43 +188,29 @@ public class MathGame extends AppCompatActivity implements View.OnClickListener 
 
             tv_timer.setText((0) + " сек");
             pb_timer.setProgress(15);
+
+            result = Integer.parseInt(tv_score.getText().toString());
+
+
             //как я понял, Handler это класс обработчик, который может совершить какое-то действие один раз после указанной задержки
-            //задержкой тут является число 2000 в методе postDelayed()
-            // то есть после того, как игра заканчивается, то через 2 секунды наша главная кнопка снова появится и мы можем начать играть заново
+            //задержкой тут является число 1000 в методе postDelayed()
+            // то есть после того, как игра заканчивается, то через 1 секунду наша главная кнопка снова появится и мы можем начать играть заново
             // об этом методе хорошо расписано тут https://guides.codepath.com/android/Repeating-Periodic-Tasks
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     startMathGame.setVisibility(View.VISIBLE);
-                }
-            }, 2000);
 
-            editTextTextPersonName.setEnabled(true);
-            editTextTextPersonName.setVisibility(View.VISIBLE);
-            tv_textPersonName.setVisibility(View.VISIBLE);
-            btn_OK.setVisibility(View.VISIBLE);
-            btn_OK.setEnabled(true);
-            btn_results.setVisibility(View.VISIBLE);
-            btn_results.setEnabled(true);
+                    tv_textPersonName.setVisibility(View.VISIBLE);
+
+                    btn_save_results.setVisibility(View.VISIBLE);
+                    btn_save_results.setEnabled(true);
+
+                    btn_results.setVisibility(View.VISIBLE);
+                    btn_results.setEnabled(true);
+                }
+            }, 1000);
         }
     };
-
-//    @Override
-//    public boolean onTouch(View v, MotionEvent event) {
-//        Button button = (Button) v;
-//        v.color
-//        switch (event.getAction()) {
-//            case MotionEvent.ACTION_DOWN:
-//                button.setBackgroundResource(R.color.RED);
-//                break;
-//            case MotionEvent.ACTION_UP:
-//            case MotionEvent.ACTION_CANCEL:
-////                button.setBackground(backGroundColor);
-////                button.setBackgroundColor(Color.);
-////                button.setBackgroundResource(R.color.myGreen);
-//                break;
-//        }
-//        return false;
-//    }
 }

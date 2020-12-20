@@ -19,8 +19,10 @@
     <string name="triangle">Треугольник</string>
     <string name="letsGo">Поехали!</string>
     <string name="result_table">Таблица результатов</string>
-    <string name="edit_name">Введите имя для сохранения результатов:</string>
-    <string name="ok">ok</string>
+    <string name="edit_name">Сохранить ваши результаты?</string>
+    <string name="ok">Сохранить</string>
+    <string name="editUrName">Введите ваше имя</string>
+    <string name="SaveResults">Сохранить результаты</string>
 
     <string-array name="mainLevels">
         <item>Уровень 1</item>

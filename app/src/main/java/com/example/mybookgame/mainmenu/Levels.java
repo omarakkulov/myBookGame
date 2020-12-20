@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.mybookgame.R;
-import com.example.mybookgame.mathgame.MathGame;
+import com.example.mybookgame.mathgame.questions_and_logic.MathGame;
 
 import java.util.Objects;
 
@@ -22,22 +22,14 @@ public class Levels extends AppCompatActivity implements AdapterView.OnItemClick
     // лист из layout файла levels
     ListView lvLevels;
 
-    final int MAX_STREAMS = 5;
-    public SoundPool sp;
-    public int soundIdShot;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.levels);
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         }
-
-        sp = new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
-        soundIdShot = sp.load(this, R.raw.shot, 1);
 
         // находим наш лист
         lvLevels = findViewById(R.id.lvLevels);
@@ -55,26 +47,12 @@ public class Levels extends AppCompatActivity implements AdapterView.OnItemClick
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        if ((int) id >= 0 && id <= 14) {
-//            sp.play(soundIdShot, 1, 1, 0, 0, 1);
-//        }
         Intent intent;
-        switch ((int) id) {
+        switch (position) {
             case 0:
-//                intent = new Intent(this, Painting_lvl_1.class);
-//                startActivity(intent);
-                sp.play(soundIdShot, 1, 1, 0, 0, 1);
                 intent = new Intent(view.getContext(), MathGame.class);
                 startActivity(intent);
                 break;
         }
     }
-
-//    //обрабатываем нажатие на пункты списка
-//    @Override
-//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//
-//        Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
-//    }
 }
