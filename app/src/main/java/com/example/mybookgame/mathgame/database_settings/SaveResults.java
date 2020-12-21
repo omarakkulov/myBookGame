@@ -2,6 +2,7 @@ package com.example.mybookgame.mathgame.database_settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.mybookgame.R;
 import com.example.mybookgame.mathgame.questions_and_logic.MathGame;
+import com.example.mybookgame.mathgame.results.Results_activity;
 
 public class SaveResults extends AppCompatActivity {
     EditText et_PersonName;
@@ -28,6 +30,7 @@ public class SaveResults extends AppCompatActivity {
     View.OnClickListener btn_save_ur_results_clicked = new View.OnClickListener() {
         DB_Template template;
         DBHelper dbHelper;
+        Intent intent;
 
         @Override
         public void onClick(View v) {
@@ -40,6 +43,11 @@ public class SaveResults extends AppCompatActivity {
                 template = new DB_Template(-1, et_PersonName.getText().toString(), result);
                 boolean add = dbHelper.add(template);// добавляем результат
                 Toast.makeText(SaveResults.this, "Результаты сохранены : \n" + template.toString() + "\nИзменения занесены в таблицу результатов", Toast.LENGTH_LONG).show();
+
+                intent = new Intent(SaveResults.this, Results_activity.class);
+                finish();
+                startActivity(intent);
+
                 btn_save_ur_results.setEnabled(false);
                 btn_save_ur_results.setVisibility(View.INVISIBLE);
             } else {
